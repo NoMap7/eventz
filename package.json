@@ -1,0 +1,30 @@
+{
+  "name": "eventz",
+  "version": "1.0.0",
+  "description": "follow artists and book shows",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "startProd": "SET NODE_ENV=production& nodemon server.js",
+    "debug": "ndb server.js"
+  },
+  "author": "NoMap7",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.12",
+    "morgan": "^1.10.0",
+    "ndb": "^1.1.5",
+    "nodemailer": "^6.6.2",
+    "prettier": "^2.3.0",
+    "pug": "^3.0.2",
+    "slugify": "^1.5.3",
+    "validator": "^13.6.0"
+  }
+}

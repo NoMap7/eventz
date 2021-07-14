@@ -1,0 +1,35 @@
+extends base.pug
+
+block content 
+    h1 extending to base
+    for post in posts 
+        .card-container 
+        .card 
+            .card__header 
+                img(src='post-creater-image' alt='post-creater')
+                span Organiser Name 
+            .card-details 
+                .post-title
+                    h3= post.title
+                .post-cover 
+                    img(src='post-cover-image' alt='post-cover')
+                .post-artists 
+                    ul 
+                        li: a(href='#') artist 1
+                        li: a(hre='#') artist 2
+                .post-description 
+                    p= post.description 
+                .post-time 
+                    span= post.dates[0]
+                    span= post.venue.address 
+                .post-book 
+                    .book-btn 
+                        a
+                            button(type='button') Book Now
+                .post-stats 
+                    .post-likes 
+                        p= post.likesCount
+                        button(type='button') Like 
+                    .post-comments 
+                        p= `${post.commentsCount} commetnt`
+                        a(href='#') See all comments 
