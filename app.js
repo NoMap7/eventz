@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(hpp()); //prevent http parameter pollution
 
-//routers
+//routers 
 const userRouter = require('./routes/userRoutes');
 const postRouter = require('./routes/postRoutes');
 const viewsRouter = require('./routes/viewsRoutes');
