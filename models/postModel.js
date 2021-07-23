@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 // const slugify = require('slugify');
 
 const postSchema = new mongoose.Schema({
-  //   slug: String,
   title: {
     type: String,
     required: true,
     trim: true,
     minlength: [3, 'post title cannot be less than 3 characters'],
   },
+  slug: String,
   likesCount: {
     type: Number,
     default: 0,
@@ -31,6 +31,12 @@ const postSchema = new mongoose.Schema({
     coordinates: [Number],
     address: String,
   },
+  performing: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
   dates: {
     type: [Date],
     required: true,
@@ -39,6 +45,14 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+});
+
+postSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'performing',
+    select: '-__v -passwordChangedAt -following -email',
+  });
+  next();
 });
 
 const Post = mongoose.model('Post', postSchema);

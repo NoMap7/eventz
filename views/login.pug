@@ -1,0 +1,12 @@
+extends base.pug
+
+block content 
+    .container 
+        .form-container 
+            h2 Log into your account 
+            form.login-form(action='submit')
+                label(for='email') Email 
+                input(type='email' id='email' name='email' placeholder='you@example.com' required)
+                label(for='password') Password 
+                input(type='password' id='password' name='password' placeholder='********' minlength='8' required)
+                button.login-btn Log in

@@ -1,9 +1,12 @@
 section.header
     nav
-        a(href='#')
+        a(href='/')
             img.logo-main(src='img/logo-white.png' alt='Events')
         div.nav-links 
             ul
-                li: a(href='#') My Bookings 
-                li: a(href='#') User 
-                li: a(href='#') Log Out 
+                if user 
+                    li: a(href='#')= user.name.split(' ')[0] 
+                    li: a.logout(href='#') Log Out 
+                else 
+                    li: a(href='/login') Log In 
+                    li: a(href='#') Sign Up 

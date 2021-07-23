@@ -1,7 +1,13 @@
 const express = require('express');
-const router = express.Router();
 const viewsController = require('./../controllers/viewsController');
+const authController = require('./../controllers/authController');
 
-router.use('/', viewsController.getHome);
+const router = express.Router();
+
+router.use(authController.isLoggedIn);
+
+router.get('/', viewsController.getHome);
+router.get('/login', viewsController.getLoginForm);
+router.get('/:slug', viewsController.getPost);
 
 module.exports = router;

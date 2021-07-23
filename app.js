@@ -2,17 +2,19 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const path = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 const morgan = require('morgan');
 const hpp = require('hpp');
-app.use(express.json());
-
 app.use(hpp()); //prevent http parameter pollution
 
-//routers 
+app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
+
+//routers
+const viewsRouter = require('./routes/viewsRoutes');
 const userRouter = require('./routes/userRoutes');
 const postRouter = require('./routes/postRoutes');
-const viewsRouter = require('./routes/viewsRoutes');
 
 // set view engine
 app.set('view engine', 'pug');
@@ -33,9 +35,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //routes
+app.use('/', viewsRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/users', userRouter);
-app.use('/', viewsRouter);
 
 //undefined routes
 app.all('*', (req, res, next) => {

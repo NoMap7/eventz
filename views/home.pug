@@ -6,30 +6,31 @@ block content
         .card-container 
         .card 
             .card__header 
-                img(src='post-creater-image' alt='post-creater')
-                span Organiser Name 
+                img(src='/img/post-creater-image' alt='post-creater')
+                span Organiser Name
             .card-details 
+                .post-cover 
+                    img(src='/img/post-cover-image' alt='post-cover')
                 .post-title
                     h3= post.title
-                .post-cover 
-                    img(src='post-cover-image' alt='post-cover')
+                .post-description 
+                    //- p= post.description 
+                    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur repellendus consequatur animi saepe delectus obcaecati cum iste impedit, quo eos deserunt eius Debitis voluptatum autem expedita tempore, magnam aliquid laboriosam.
                 .post-artists 
                     ul 
                         li: a(href='#') artist 1
-                        li: a(hre='#') artist 2
-                .post-description 
-                    p= post.description 
+                        li: a(href='#') artist 2
                 .post-time 
                     span= post.dates[0]
                     span= post.venue.address 
                 .post-book 
                     .book-btn 
                         a
-                            button(type='button') Book Now
+                            button.book-now(type='button') Book Now
                 .post-stats 
                     .post-likes 
                         p= post.likesCount
                         button(type='button') Like 
                     .post-comments 
-                        p= `${post.commentsCount} commetnt`
+                        p= `${post.commentsCount} comments`
                         a(href='#') See all comments 

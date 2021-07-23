@@ -56,15 +56,25 @@ exports.login = async (req, res, next) => {
   createSendJWT(user, 200, res);
 };
 
+exports.logout = (req, res, next) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
+};
+
 exports.protect = async (req, res, next) => {
   try {
-    //check if token was sent as header---------------------------------
+    //check if token was sent as header or cookie---------------------------------
     let token;
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith('Bearer')
     ) {
       token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt;
     }
     if (!token) {
       return next(new AppError('You are not logged in. Please log in', 401));
@@ -97,6 +107,34 @@ exports.protect = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+//only for rendered pages, no errors
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      const decoded = await jwt.verify(
+        req.cookies.jwt,
+        process.env.JWT_SECRET_KEY
+      );
+
+      const user = await User.findById(decoded.id);
+      if (!user) {
+        return next();
+      }
+
+      if (user.changedPasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      //there is a logged in user
+      res.locals.user = user;
+      return next();
+    } catch (error) {
+      return next(); //token verification will fail here when logging out, but we don't want an error
+    }
+  }
+  next();
 };
 
 exports.restrictTo = (...roles) => {

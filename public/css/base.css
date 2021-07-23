@@ -68,8 +68,89 @@ nav {
 }
 .container {
   padding: 1rem 2rem;
+  background-color: whitesmoke;
 }
 
 .card {
-  padding: 1rem 5rem;
+  width: 70%;
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: white;
+  color: black;
+}
+.post-title {
+  font-size: 2rem;
+}
+.post-artists {
+  padding: 1rem 0.4rem;
+}
+
+.post-time {
+  display: inline-block;
+}
+.post-book {
+  display: flex;
+  justify-content: center;
+  /* flex-grow: 1; */
+  align-items: center;
+}
+.book-btn {
+  width: 100%;
+}
+.book-now {
+  background-color: blueviolet;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  font-size: 2rem;
+  font-weight: 400;
+  width: 100%;
+  border-style: none;
+  color: #fff;
+  /* margin: 0 auto; */
+}
+
+.post-stats {
+  padding: 0.4rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.post-likes {
+  display: flex;
+}
+.post-likes p,
+.post-comments p {
+  padding-right: 0.5rem;
+}
+
+.post-comments {
+  display: flex;
+}
+
+/* login page */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin: 1rem auto;
+  width: 50%;
+}
+.form-container h2 {
+  text-align: center;
+}
+.login-form {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.login-btn {
+  width: 4rem;
+  padding: 0.2rem 0.4rem;
+  margin: 0.3rem 0;
+  border-style: solid;
+  border-radius: 5%;
 }
